@@ -196,40 +196,66 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const maxSolutions = 5; // Show first 5 solutions
-    const displayCount = Math.min(solutions.length, maxSolutions);
+    // Group solutions by number of steps
+    const groupedSolutions = {};
+    solutions.forEach((solution) => {
+      const stepCount = solution.length;
+      if (!groupedSolutions[stepCount]) {
+        groupedSolutions[stepCount] = [];
+      }
+      groupedSolutions[stepCount].push(solution);
+    });
+
+    // Sort by step count (fewest first)
+    const sortedStepCounts = Object.keys(groupedSolutions)
+      .map(Number)
+      .sort((a, b) => a - b);
 
     let html = `
       <div class="solution-header">
         Found ${solutions.length} solution${solutions.length !== 1 ? 's' : ''}
-        ${solutions.length > maxSolutions ? ` (showing first ${maxSolutions})` : ''}
       </div>
     `;
 
-    for (let i = 0; i < displayCount; i++) {
-      const solution = solutions[i];
+    // Render each group
+    sortedStepCounts.forEach((stepCount) => {
+      const groupSolutions = groupedSolutions[stepCount];
       html += `
-        <div class="solution">
-          <div class="solution-title">Solution ${i + 1}</div>
-          ${solution
-            .map(
-              (step, idx) => `
+        <div class="solution-group">
+          <div class="group-title">${stepCount} step${stepCount !== 1 ? 's' : ''}</div>
+      `;
+
+      groupSolutions.forEach((solution) => {
+        html += '<div class="solution">';
+        
+        // Track intermediate results
+        const intermediateResults = new Set();
+        
+        solution.forEach((step, idx) => {
+          const leftIsIntermediate = intermediateResults.has(step.left);
+          const rightIsIntermediate = intermediateResults.has(step.right);
+          
+          html += `
             <div class="step">
-              <span class="step-number">${idx + 1}</span>
               <span class="step-content">
-                ${step.left}
+                <span class="${leftIsIntermediate ? 'intermediate' : ''}">${step.left}</span>
                 <span class="operator">${step.operator}</span>
-                ${step.right}
+                <span class="${rightIsIntermediate ? 'intermediate' : ''}">${step.right}</span>
                 <span class="operator">=</span>
                 <span class="result">${step.result}</span>
               </span>
             </div>
-          `
-            )
-            .join('')}
-        </div>
-      `;
-    }
+          `;
+          
+          // Add this step's result to intermediate results for next steps
+          intermediateResults.add(step.result);
+        });
+        
+        html += '</div>';
+      });
+
+      html += '</div>';
+    });
 
     solutionsDiv.innerHTML = html;
   }

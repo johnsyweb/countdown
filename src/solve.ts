@@ -3,11 +3,31 @@ type Step = { left: number; operator: Operator; right: number; result: number };
 
 function combine(smaller: number, larger: number): Step[] {
   return [
-    { left: smaller, operator: '+', right: larger, result: smaller + larger },
-    { left: smaller, operator: '*', right: larger, result: smaller * larger },
-    { left: larger, operator: '-', right: smaller, result: larger - smaller },
-    { left: larger, operator: '/', right: smaller, result: larger / smaller },
-  ];
+    {
+      left: smaller,
+      operator: '+' as const,
+      right: larger,
+      result: smaller + larger,
+    },
+    {
+      left: smaller,
+      operator: '*' as const,
+      right: larger,
+      result: smaller * larger,
+    },
+    {
+      left: larger,
+      operator: '-' as const,
+      right: smaller,
+      result: larger === smaller ? NaN : larger - smaller,
+    },
+    {
+      left: larger,
+      operator: '/' as const,
+      right: smaller,
+      result: larger % smaller === 0 ? larger / smaller : NaN,
+    },
+  ].filter((step) => !isNaN(step.result));
 }
 
 function getRemainingNumbers(

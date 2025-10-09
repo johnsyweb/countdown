@@ -32,6 +32,21 @@ describe('solve', () => {
     expect(result).toBeNull();
   });
 
+  it('does not allow division with non-integer results', () => {
+    const result = solve([6, 10], 1);
+    expect(result).toBeNull();
+  });
+
+  it('does not allow subtraction that results in zero', () => {
+    const result = solve([5, 5], 0);
+    expect(result).toBeNull();
+  });
+
+  it('does not allow subtraction that results in negative numbers', () => {
+    const result = solve([2, 5], -3);
+    expect(result).toBeNull();
+  });
+
   it('may have multiple solutions', () => {
     const result = solve([2, 2], 4);
     expect(result).toEqual([

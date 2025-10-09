@@ -74,4 +74,9 @@ describe('solve', () => {
       { left: 100, operator: '+', right: 255, result: 355 },
     ]);
   });
+
+  it('filters out duplicate solutions when input has duplicate numbers', () => {
+    const result = solve([2, 2, 3], 5);
+    expect(result).toEqual([[{ left: 2, operator: '+', right: 3, result: 5 }]]);
+  });
 });

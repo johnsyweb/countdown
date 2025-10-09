@@ -87,14 +87,28 @@ function getAllPairs(length: number): Array<[number, number]> {
   );
 }
 
+function deduplicateSolutions(solutions: Step[][]): Step[][] {
+  const seen = new Set<string>();
+  return solutions.filter((solution) => {
+    const key = JSON.stringify(solution);
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
 export function solve(numbers: number[], target: number): Step[][] | null {
   if (numbers.length < 2) {
     return null;
   }
 
-  const solutions = getAllPairs(numbers.length).flatMap(([i, j]) =>
+  const allSolutions = getAllPairs(numbers.length).flatMap(([i, j]) =>
     findSolutionsForPair(numbers, target, i, j)
   );
+
+  const solutions = deduplicateSolutions(allSolutions);
 
   return solutions.length > 0 ? solutions : null;
 }

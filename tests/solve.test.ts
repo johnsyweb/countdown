@@ -16,4 +16,9 @@ describe('solve', () => {
     const result = solve([2, 3], 6);
     expect(result).toEqual([[2, '*', 3, 6]]);
   });
+
+  it('returns the correct solution when two inputs can be subtracted to make the target', () => {
+    const result = solve([2, 3], 1);
+    expect(result).toEqual([[3, '-', 2, 1]]);
+  });
 });

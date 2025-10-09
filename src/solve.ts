@@ -4,6 +4,8 @@ export function solve(numbers: number[], target: number): unknown {
     return [[smaller, '+', larger, target]];
   } else if (smaller * larger === target) {
     return [[smaller, '*', larger, target]];
+  } else if (larger - smaller === target) {
+    return [[larger, '-', smaller, target]];
   }
   return null;
 }

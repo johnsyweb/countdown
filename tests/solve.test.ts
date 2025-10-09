@@ -49,4 +49,14 @@ describe('solve', () => {
       ],
     ]);
   });
+
+  it('solves complex problems with many numbers', () => {
+    const result = solve([3, 3, 5, 6, 8, 100], 355);
+    expect(result).toContainEqual([
+      { left: 6, operator: '*', right: 8, result: 48 },
+      { left: 3, operator: '+', right: 48, result: 51 },
+      { left: 5, operator: '*', right: 51, result: 255 },
+      { left: 100, operator: '+', right: 255, result: 355 },
+    ]);
+  });
 });

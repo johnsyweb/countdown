@@ -52,14 +52,19 @@ function findSolutionsForPair(
 ): Step[][] {
   const [smaller, larger] = [numbers[i], numbers[j]].sort((a, b) => a - b);
   const steps = combine(smaller, larger);
-  const solutions: Step[][] = [];
 
-  for (const step of steps) {
-    const stepSolutions = findSolutionsForStep(step, target, numbers, i, j);
-    solutions.push(...stepSolutions);
-  }
+  return steps.flatMap((step) =>
+    findSolutionsForStep(step, target, numbers, i, j)
+  );
+}
 
-  return solutions;
+function getAllPairs(length: number): Array<[number, number]> {
+  return Array.from({ length }, (_, i) => i).flatMap((i) =>
+    Array.from(
+      { length: length - i - 1 },
+      (_, k) => [i, i + k + 1] as [number, number]
+    )
+  );
 }
 
 export function solve(numbers: number[], target: number): Step[][] | null {
@@ -67,14 +72,9 @@ export function solve(numbers: number[], target: number): Step[][] | null {
     return null;
   }
 
-  const solutions: Step[][] = [];
-
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = i + 1; j < numbers.length; j++) {
-      const pairSolutions = findSolutionsForPair(numbers, target, i, j);
-      solutions.push(...pairSolutions);
-    }
-  }
+  const solutions = getAllPairs(numbers.length).flatMap(([i, j]) =>
+    findSolutionsForPair(numbers, target, i, j)
+  );
 
   return solutions.length > 0 ? solutions : null;
 }

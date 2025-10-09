@@ -1,5 +1,10 @@
-type Operator = '+' | '-' | '*' | '/';
-type Step = { left: number; operator: Operator; right: number; result: number };
+export type Operator = '+' | '-' | '*' | '/';
+export type Step = {
+  left: number;
+  operator: Operator;
+  right: number;
+  result: number;
+};
 
 function combine(smaller: number, larger: number): Step[] {
   return [

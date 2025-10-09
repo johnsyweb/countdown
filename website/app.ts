@@ -1,7 +1,4 @@
-import { solve } from '../src/solve';
-
-type Operator = '+' | '-' | '*' | '/';
-type Step = { left: number; operator: Operator; right: number; result: number };
+import { solve, type Step } from '../src/solve';
 
 // UI Logic
 
@@ -15,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-tab functionality for number cards
   numberCards.forEach((card, index) => {
     card.addEventListener('input', (e) => {
+      const target = e.target as HTMLInputElement;
       if (
-        e.target.value.length === e.target.maxLength &&
+        target.value.length === target.maxLength &&
         index < numberCards.length - 1
       ) {
         numberCards[index + 1].focus();

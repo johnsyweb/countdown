@@ -39,4 +39,14 @@ describe('solve', () => {
       [{ left: 2, operator: '*', right: 2, result: 4 }],
     ]);
   });
+
+  it('solves problems requiring multiple steps', () => {
+    const result = solve([1, 2, 4], 12);
+    expect(result).toEqual([
+      [
+        { left: 1, operator: '+', right: 2, result: 3 },
+        { left: 3, operator: '*', right: 4, result: 12 },
+      ],
+    ]);
+  });
 });

@@ -4,7 +4,7 @@ export default defineConfig({
   root: 'website',
   base: '/countdown/',
   build: {
-    outDir: '../dist-website',
+    outDir: 'dist',
     emptyOutDir: true,
   },
 });

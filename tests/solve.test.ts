@@ -6,4 +6,9 @@ describe('solve', () => {
     const result = solve([], [1, 2], 4);
     expect(result).toBeNull();
   });
+
+  it('returns the correct solution when two inputs can be added to make the target', () => {
+    const result = solve([], [1, 2], 3);
+    expect(result).toEqual([[1, '+', 2, 3]]);
+  });
 });

@@ -1,8 +1,11 @@
 export function solve(
   _steps: unknown[],
-  _numbers: number[],
-  _target: number
+  numbers: number[],
+  target: number
 ): unknown {
-  // TODO: Implement
+  const [smaller, larger] = numbers.sort((a, b) => a - b);
+  if (smaller + larger === target) {
+    return [[smaller, '+', larger, target]];
+  }
   return null;
 }

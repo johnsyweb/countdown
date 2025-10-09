@@ -1,4 +1,7 @@
-export function solve(numbers: number[], target: number): unknown {
+type Operator = '+' | '-' | '*' | '/';
+type Step = [number, Operator, number, number];
+
+export function solve(numbers: number[], target: number): Step[] | null {
   const [smaller, larger] = numbers.sort((a, b) => a - b);
   if (smaller + larger === target) {
     return [[smaller, '+', larger, target]];

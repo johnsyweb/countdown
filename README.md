@@ -10,11 +10,13 @@ In the Countdown numbers game, you are given six integers and a target number. U
 
 A beautiful web interface is available in the `website/` directory, built with TypeScript and Vite.
 
+**🌐 Live Demo:** The website is automatically deployed to [my website](https://johnsy.com/countdown/).
+
 Features:
-- Green-on-black seven-segment display for the target
+- Green-on-black display for the target
 - Six blue number cards for input
 - Keyboard navigation with Tab and Enter
-- Professional solution display with step-by-step calculations
+- Solution display with step-by-step calculations
 - Solutions grouped by number of steps (fewest first)
 - Intermediate results highlighted with yellow background
 - Responsive design for mobile and desktop
@@ -52,6 +54,26 @@ pnpm run format        # Format code with Prettier
 pnpm run format:check  # Check if code is formatted
 pnpm run precommit     # Run all checks (format, lint, type-check, test)
 ```
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+- **CI Workflow**: Runs on all pushes and pull requests
+  - Format checking with Prettier
+  - Linting with ESLint
+  - Type checking with TypeScript
+  - Test suite with Vitest
+
+- **Publish Workflow**: Deploys to GitHub Pages on main branch
+  - Runs all precommit checks
+  - Builds production website
+  - Automatically deploys to gh-pages
+
+- **Dependabot**: Keeps dependencies up to date
+  - Weekly updates for npm packages and GitHub Actions
+  - Groups minor and patch updates
+  - Auto-merges when CI passes
 
 ## License
 

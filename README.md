@@ -31,11 +31,49 @@ pnpm run preview  # Preview production build
 
 ## Development
 
+### Prerequisites
+
+This project uses [Mise](https://mise.jdx.dev/) to manage tool versions (Node.js and pnpm).
+
+#### Installing Mise
+
+**macOS/Linux:**
+```bash
+curl https://mise.run | sh
+```
+
+**Homebrew:**
+```bash
+brew install mise
+```
+
+**Other installation methods:** See [mise.jdx.dev](https://mise.jdx.dev/getting-started.html)
+
+After installation, activate Mise in your shell:
+```bash
+# For bash
+echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+
+# For zsh
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+
+# Then restart your shell or run:
+source ~/.bashrc  # or ~/.zshrc
+```
+
 ### Setup
 
-```bash
-pnpm install
-```
+1. **Install tools** (Node.js and pnpm):
+   ```bash
+   mise install
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pnpm install
+   ```
+
+That's it! Mise will automatically use the correct versions of Node.js (20) and pnpm (10) as specified in `.mise.toml`.
 
 ### Running Tests
 

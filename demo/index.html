@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Numbers Solver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Countdown Numbers Game</h1>
+        
+        <div class="target-section">
+            <label>Target</label>
+            <div class="seven-segment-display">
+                <input type="text" id="target" maxlength="3" placeholder="000" pattern="[0-9]*" inputmode="numeric">
+            </div>
+        </div>
+
+        <div class="numbers-section">
+            <label>Numbers</label>
+            <div class="number-cards">
+                <input type="text" class="number-card" maxlength="3" placeholder="0" pattern="[0-9]*" inputmode="numeric">
+                <input type="text" class="number-card" maxlength="3" placeholder="0" pattern="[0-9]*" inputmode="numeric">
+                <input type="text" class="number-card" maxlength="3" placeholder="0" pattern="[0-9]*" inputmode="numeric">
+                <input type="text" class="number-card" maxlength="3" placeholder="0" pattern="[0-9]*" inputmode="numeric">
+                <input type="text" class="number-card" maxlength="3" placeholder="0" pattern="[0-9]*" inputmode="numeric">
+                <input type="text" class="number-card" maxlength="3" placeholder="0" pattern="[0-9]*" inputmode="numeric">
+            </div>
+            <button id="solve-btn" class="solve-button">Solve</button>
+        </div>
+
+        <div id="solutions" class="solutions-section"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

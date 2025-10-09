@@ -6,6 +6,17 @@ A TypeScript solver for the Countdown numbers game.
 
 In the Countdown numbers game, you are given six integers and a target number. Using basic arithmetic operations (+, -, *, /), combine the six numbers to reach the target. Each number can only be used once, and all intermediate results must be positive integers.
 
+## Demo
+
+A beautiful web interface is available in the `demo/` directory. Simply open `demo/index.html` in your browser to try it out!
+
+Features:
+- Green-on-black seven-segment display for the target
+- Six blue number cards for input
+- Keyboard navigation with Tab and Enter
+- Professional solution display showing step-by-step calculations
+- Responsive design for mobile and desktop
+
 ## Development
 
 ### Setup

@@ -73,7 +73,14 @@ source ~/.bashrc  # or ~/.zshrc
    pnpm install
    ```
 
+3. **Install Playwright browsers** (required for OG image generation):
+   ```bash
+   pnpm exec playwright install --with-deps chromium
+   ```
+
 That's it! Mise will automatically use the correct versions of Node.js (20) and pnpm (10) as specified in `.mise.toml`.
+
+**Note:** The Open Graph preview image is generated automatically during the build process by screenshotting the actual website using Playwright.
 
 ### Running Tests
 

@@ -1,4 +1,5 @@
 import { solve, type Step } from '../src/solve';
+import { isGoldenPath } from '../src/isGoldenPath';
 
 // UI Logic
 
@@ -131,11 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render each group
     sortedStepCounts.forEach((stepCount, groupIndex) => {
       const groupSolutions = groupedSolutions[stepCount];
+      const hasGoldenPath = groupSolutions.some((solution) =>
+        isGoldenPath(solution)
+      );
+      const goldenPathEmoji = hasGoldenPath ? ' ⭐' : '';
+
       html += `
         <div class="solution-group">
           <button class="group-title" data-group="${groupIndex}" role="button" tabindex="0" aria-expanded="false">
             <span class="toggle-icon">▶</span>
-            ${stepCount} step${stepCount !== 1 ? 's' : ''} (${groupSolutions.length})
+            ${stepCount} step${stepCount !== 1 ? 's' : ''} (${groupSolutions.length})${goldenPathEmoji}
           </button>
           <div class="group-solutions" data-group="${groupIndex}" style="display: none;">
       `;

@@ -1,6 +1,7 @@
 node_modules/
 dist/
 website/dist/
+website/public/og-image.png
 coverage/
 *.log
 .DS_Store

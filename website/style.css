@@ -32,8 +32,52 @@ h1 {
   text-align: center;
   color: rgba(255, 255, 255, 0.8);
   font-size: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-style: italic;
+}
+
+.subtitle a {
+  color: #69f0ae;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(105, 240, 174, 0.3);
+  transition: all 0.2s ease;
+}
+
+.subtitle a:hover {
+  color: #b9f6ca;
+  border-bottom-color: #b9f6ca;
+}
+
+.subtitle a:focus {
+  outline: 2px solid #69f0ae;
+  outline-offset: 2px;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.info-box p {
+  margin: 0.5rem 0;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.info-box p:first-child {
+  margin-top: 0;
+}
+
+.info-box p:last-child {
+  margin-bottom: 0;
+}
+
+.info-box strong {
+  color: #1e3c72;
 }
 
 label {
@@ -282,6 +326,15 @@ label {
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .info-box {
+    font-size: 0.85rem;
+    padding: 1rem;
   }
 
   .seven-segment-display input {

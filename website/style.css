@@ -174,13 +174,43 @@ label {
 }
 
 .group-title {
+  width: 100%;
+  background: #f5f5f5;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1.3rem;
   color: #1e3c72;
   font-weight: 700;
+  padding: 1rem 1.5rem;
   margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e0e0e0;
   text-transform: capitalize;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.group-title:hover {
+  background: #ebebeb;
+  border-color: #1e3c72;
+}
+
+.group-title:focus {
+  outline: 3px solid #4a9afc;
+  outline-offset: 2px;
+}
+
+.toggle-icon {
+  font-size: 0.9rem;
+  color: #00c853;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.group-solutions {
+  display: block;
 }
 
 .solution {

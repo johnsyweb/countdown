@@ -129,11 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     // Render each group
-    sortedStepCounts.forEach((stepCount) => {
+    sortedStepCounts.forEach((stepCount, groupIndex) => {
       const groupSolutions = groupedSolutions[stepCount];
       html += `
         <div class="solution-group">
-          <div class="group-title">${stepCount} step${stepCount !== 1 ? 's' : ''}</div>
+          <button class="group-title" data-group="${groupIndex}" role="button" tabindex="0" aria-expanded="false">
+            <span class="toggle-icon">▶</span>
+            ${stepCount} step${stepCount !== 1 ? 's' : ''} (${groupSolutions.length})
+          </button>
+          <div class="group-solutions" data-group="${groupIndex}" style="display: none;">
       `;
 
       groupSolutions.forEach((solution) => {
@@ -165,9 +169,47 @@ document.addEventListener('DOMContentLoaded', () => {
         html += '</div>';
       });
 
-      html += '</div>';
+      html += '</div></div>';
     });
 
     solutionsDiv.innerHTML = html;
+
+    // Add collapse/expand functionality
+    const groupTitles =
+      solutionsDiv.querySelectorAll<HTMLButtonElement>('.group-title');
+    groupTitles.forEach((title) => {
+      title.addEventListener('click', () => {
+        toggleGroup(title);
+      });
+
+      title.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleGroup(title);
+        }
+      });
+    });
+  }
+
+  function toggleGroup(titleButton: HTMLButtonElement): void {
+    const groupId = titleButton.dataset.group;
+    const content = solutionsDiv.querySelector<HTMLDivElement>(
+      `.group-solutions[data-group="${groupId}"]`
+    );
+    const icon = titleButton.querySelector('.toggle-icon');
+
+    if (!content || !icon) return;
+
+    const isExpanded = titleButton.getAttribute('aria-expanded') === 'true';
+
+    if (isExpanded) {
+      content.style.display = 'none';
+      titleButton.setAttribute('aria-expanded', 'false');
+      icon.textContent = '▶';
+    } else {
+      content.style.display = 'block';
+      titleButton.setAttribute('aria-expanded', 'true');
+      icon.textContent = '▼';
+    }
   }
 });

@@ -14,7 +14,8 @@
     "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\" \"website/**/*.ts\"",
     "precommit": "pnpm run format && pnpm run lint && pnpm run type-check && pnpm test",
     "generate:og-image": "node --import tsx/esm scripts/generate-og-image.ts",
-    "prebuild": "pnpm run generate:og-image",
+    "generate:icons": "node --import tsx/esm scripts/generate-icons.ts",
+    "prebuild": "pnpm run generate:icons && pnpm run generate:og-image",
     "dev": "vite website --config vite.config.ts",
     "build": "vite build website --config vite.config.ts",
     "preview": "vite preview website --config vite.config.ts"

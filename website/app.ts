@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const numberCards =
     document.querySelectorAll<HTMLInputElement>('.number-card');
   const solveBtn = document.getElementById('solve-btn') as HTMLButtonElement;
+  const resetBtn = document.getElementById('reset-btn') as HTMLButtonElement;
   const solutionsDiv = document.getElementById('solutions') as HTMLDivElement;
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -113,6 +114,16 @@ document.addEventListener('DOMContentLoaded', () => {
       solveBtn.disabled = false;
       solveBtn.textContent = 'Solve';
     }, 100);
+  });
+
+  resetBtn.addEventListener('click', () => {
+    targetInput.value = '';
+    numberCards.forEach((card) => {
+      card.value = '';
+    });
+    solutionsDiv.innerHTML = '';
+    solutionsDiv.classList.remove('show');
+    targetInput.focus();
   });
 
   function showError(message: string): void {

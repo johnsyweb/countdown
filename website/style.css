@@ -165,6 +165,46 @@ label {
   color: rgba(255, 255, 255, 0.3);
 }
 
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Reset Button */
+.reset-button {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reset-button:hover {
+  background: linear-gradient(135deg, #ff8787 0%, #ffa8a8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.reset-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.reset-button:focus {
+  outline: 3px solid #ff6b6b;
+  outline-offset: 2px;
+}
+
 /* Solve Button */
 .solve-button {
   background: linear-gradient(135deg, #00c853 0%, #00e676 100%);
@@ -179,7 +219,6 @@ label {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  align-self: flex-end;
 }
 
 .solve-button:hover {
@@ -191,6 +230,11 @@ label {
 .solve-button:active {
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.solve-button:focus {
+  outline: 3px solid #00c853;
+  outline-offset: 2px;
 }
 
 .solve-button:disabled {
@@ -399,6 +443,12 @@ label {
     padding: 15px 5px;
   }
 
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .reset-button,
   .solve-button {
     width: 100%;
   }

@@ -20,6 +20,23 @@ Features:
 - Solutions grouped by number of steps (fewest first)
 - Intermediate results highlighted with yellow background
 - Responsive design for mobile and desktop
+- Query parameter support for pre-filling values and auto-solving
+
+### Query Parameters
+
+You can pre-fill the target and numbers using URL query parameters:
+
+**Comma-separated format:**
+```
+?target=355&numbers=3,3,5,6,8,100
+```
+
+**Individual parameters:**
+```
+?target=355&n1=3&n2=3&n3=5&n4=6&n5=8&n6=100
+```
+
+When all fields (target and 6 numbers) are provided via query parameters, the solver runs automatically.
 
 ### Running the Website
 

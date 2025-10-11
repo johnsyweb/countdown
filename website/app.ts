@@ -10,6 +10,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const solveBtn = document.getElementById('solve-btn') as HTMLButtonElement;
   const solutionsDiv = document.getElementById('solutions') as HTMLDivElement;
 
+  // Populate from query parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  let allFieldsFilled = false;
+
+  // Populate target
+  const targetParam = urlParams.get('target');
+  if (targetParam) {
+    targetInput.value = targetParam;
+  }
+
+  // Populate numbers (support both comma-separated and individual parameters)
+  const numbersParam = urlParams.get('numbers');
+  if (numbersParam) {
+    const numbers = numbersParam.split(',').filter((n) => n.trim() !== '');
+    numbers.forEach((num, index) => {
+      if (index < numberCards.length) {
+        numberCards[index].value = num.trim();
+      }
+    });
+    allFieldsFilled = targetParam !== null && numbers.length === 6;
+  } else {
+    // Check for individual n1, n2, n3, n4, n5, n6 parameters
+    let filledCount = 0;
+    for (let i = 0; i < 6; i++) {
+      const numParam = urlParams.get(`n${i + 1}`);
+      if (numParam) {
+        numberCards[i].value = numParam;
+        filledCount++;
+      }
+    }
+    allFieldsFilled = targetParam !== null && filledCount === 6;
+  }
+
+  // Auto-solve if all fields are filled
+  if (allFieldsFilled) {
+    // Use setTimeout to ensure UI is fully rendered
+    setTimeout(() => {
+      solveBtn.click();
+    }, 100);
+  }
+
   // Auto-tab functionality for number cards
   numberCards.forEach((card, index) => {
     card.addEventListener('input', (e) => {

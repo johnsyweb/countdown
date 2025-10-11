@@ -21,6 +21,7 @@ Features:
 - Intermediate results highlighted with yellow background
 - Responsive design for mobile and desktop
 - Query parameter support for pre-filling values and auto-solving
+- Shareable permalinks to individual solutions
 
 ### Query Parameters
 
@@ -37,6 +38,19 @@ You can pre-fill the target and numbers using URL query parameters:
 ```
 
 When all fields (target and 6 numbers) are provided via query parameters, the solver runs automatically.
+
+### Sharing Solutions
+
+Each solution has a "Share" button that copies a permalink to your clipboard. The permalink includes:
+- Query parameters with the target and numbers
+- An anchor link to the specific solution (e.g., `#solution-123456`)
+
+When someone visits the permalink:
+1. The form is automatically populated with the numbers
+2. The solver runs automatically
+3. The page scrolls to and highlights the specific solution
+
+This makes it easy to share interesting solutions with others!
 
 ### Running the Website
 

@@ -92,10 +92,21 @@ function getAllPairs(length: number): Array<[number, number]> {
   );
 }
 
+function normalizeSolution(solution: Step[]): Step[] {
+  return [...solution].sort((a, b) => {
+    // Sort by left, then operator, then right
+    if (a.left !== b.left) return a.left - b.left;
+    if (a.operator !== b.operator) return a.operator.localeCompare(b.operator);
+    if (a.right !== b.right) return a.right - b.right;
+    return a.result - b.result;
+  });
+}
+
 function deduplicateSolutions(solutions: Step[][]): Step[][] {
   const seen = new Set<string>();
   return solutions.filter((solution) => {
-    const key = JSON.stringify(solution);
+    const normalizedSolution = normalizeSolution(solution);
+    const key = JSON.stringify(normalizedSolution);
     if (seen.has(key)) {
       return false;
     }

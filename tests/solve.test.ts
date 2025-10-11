@@ -79,4 +79,70 @@ describe('solve', () => {
     const result = solve([2, 2, 3], 5);
     expect(result).toEqual([[{ left: 2, operator: '+', right: 3, result: 5 }]]);
   });
+
+  it('treats solutions as equal if they have the same steps in any order', () => {
+    const result = solve([2, 3, 5, 7], 17);
+    // The solver explores different orderings of pairs which could lead to
+    // the same solution steps in different orders. For example:
+    // Path 1: (2+7=9), (3+5=8), (8+9=17)
+    // Path 2: (3+5=8), (2+7=9), (8+9=17) - same steps, different order
+    // These should be deduplicated to count as one solution
+    expect(result).toBeDefined();
+
+    // Find if there's a solution with the independent steps: 2+7=9 and 3+5=8
+    const solutionWithIndependentSteps = result?.find(
+      (sol) =>
+        sol.some(
+          (step) =>
+            step.left === 2 &&
+            step.operator === '+' &&
+            step.right === 7 &&
+            step.result === 9
+        ) &&
+        sol.some(
+          (step) =>
+            step.left === 3 &&
+            step.operator === '+' &&
+            step.right === 5 &&
+            step.result === 8
+        ) &&
+        sol.some(
+          (step) =>
+            step.left === 8 &&
+            step.operator === '+' &&
+            step.right === 9 &&
+            step.result === 17
+        )
+    );
+    expect(solutionWithIndependentSteps).toBeDefined();
+
+    // Count how many solutions have these exact same three steps
+    const duplicates = result?.filter(
+      (sol) =>
+        sol.length === 3 &&
+        sol.some(
+          (step) =>
+            step.left === 2 &&
+            step.operator === '+' &&
+            step.right === 7 &&
+            step.result === 9
+        ) &&
+        sol.some(
+          (step) =>
+            step.left === 3 &&
+            step.operator === '+' &&
+            step.right === 5 &&
+            step.result === 8
+        ) &&
+        sol.some(
+          (step) =>
+            step.left === 8 &&
+            step.operator === '+' &&
+            step.right === 9 &&
+            step.result === 17
+        )
+    );
+    // Should only have one solution with these steps, regardless of order
+    expect(duplicates).toHaveLength(1);
+  });
 });

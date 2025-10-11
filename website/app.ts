@@ -123,6 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     solutionsDiv.innerHTML = '';
     solutionsDiv.classList.remove('show');
+
+    const url = new URL(window.location.href);
+    url.search = '';
+    url.hash = '';
+    window.history.replaceState({}, '', url);
+
     targetInput.focus();
   });
 

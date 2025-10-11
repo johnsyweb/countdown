@@ -41,7 +41,11 @@ When all fields (target and 6 numbers) are provided via query parameters, the so
 
 ### Sharing Solutions
 
-Each solution has a "Share" button that copies a permalink to your clipboard. The permalink includes:
+Each solution has a "Share" button that makes it easy to share solutions:
+- On Apple devices (iOS/macOS), it opens the native share sheet
+- On other devices, it copies the permalink to your clipboard
+
+The permalink includes:
 - Query parameters with the target and numbers
 - An anchor link to the specific solution (e.g., `#solution-123456`)
 

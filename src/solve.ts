@@ -66,7 +66,13 @@ function findSolutionsForStep(
     return [];
   }
 
-  return subSolutions.map((subSolution) => [step, ...subSolution]);
+  // Only keep sub-solutions that actually use the produced subtotal somewhere later
+  const usesProduced = (solution: Step[]): boolean =>
+    solution.some((s) => s.left === step.result || s.right === step.result);
+
+  const filtered = subSolutions.filter(usesProduced);
+
+  return filtered.map((subSolution) => [step, ...subSolution]);
 }
 
 function findSolutionsForPair(

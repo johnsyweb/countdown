@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { solve } from '../src/solve';
+import { hasUnusedIntermediateSubtotal } from '../src/solutionIntegrity';
 
 describe('solve', () => {
   it('returns null when no solution exists', () => {
@@ -144,5 +145,17 @@ describe('solve', () => {
     );
     // Should only have one solution with these steps, regardless of order
     expect(duplicates).toHaveLength(1);
+  });
+
+  it('does not include unused intermediate subtotals in any solution', () => {
+    const result = solve([3, 5, 7, 10], 12);
+    expect(result).toBeTruthy();
+
+    // A solution is invalid if any non-final step's result is never used
+    // by any later step (either side, any operator).
+
+    const offending = result!.filter(hasUnusedIntermediateSubtotal);
+    // Expect no solutions to contain an unused intermediate subtotal
+    expect(offending).toHaveLength(0);
   });
 });

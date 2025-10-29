@@ -1,4 +1,5 @@
 import { solve, type Step } from '../src/solve';
+import { formatOperator } from '../src/format';
 import { isGoldenPath } from '../src/isGoldenPath';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -221,11 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const intermediateResults = new Set();
 
-        const displayOperator = (op: Step['operator']): string => {
-          if (op === '*') return '×';
-          return op;
-        };
-
         solution.forEach((step, idx) => {
           const leftIsIntermediate = intermediateResults.has(step.left);
           const rightIsIntermediate = intermediateResults.has(step.right);
@@ -234,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="step">
               <span class="step-content">
                 <span class="${leftIsIntermediate ? 'intermediate' : ''}">${step.left}</span>
-                <span class="operator">${displayOperator(step.operator)}</span>
+                <span class="operator">${formatOperator(step.operator)}</span>
                 <span class="${rightIsIntermediate ? 'intermediate' : ''}">${step.right}</span>
                 <span class="operator">=</span>
                 <span class="result">${step.result}</span>
@@ -339,7 +335,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.hash.substring(1)
       );
       if (targetElement) {
-        const parentGroup = targetElement.closest('.group-solutions');
+        const parentGroup = targetElement.closest(
+          '.group-solutions'
+        ) as HTMLElement | null;
         if (parentGroup) {
           const groupId = parentGroup.dataset.group;
           const groupTitle = solutionsDiv.querySelector(

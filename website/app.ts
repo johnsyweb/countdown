@@ -221,6 +221,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const intermediateResults = new Set();
 
+        const displayOperator = (op: Step['operator']): string => {
+          if (op === '*') return '×';
+          return op;
+        };
+
         solution.forEach((step, idx) => {
           const leftIsIntermediate = intermediateResults.has(step.left);
           const rightIsIntermediate = intermediateResults.has(step.right);
@@ -229,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="step">
               <span class="step-content">
                 <span class="${leftIsIntermediate ? 'intermediate' : ''}">${step.left}</span>
-                <span class="operator">${step.operator}</span>
+                <span class="operator">${displayOperator(step.operator)}</span>
                 <span class="${rightIsIntermediate ? 'intermediate' : ''}">${step.right}</span>
                 <span class="operator">=</span>
                 <span class="result">${step.result}</span>

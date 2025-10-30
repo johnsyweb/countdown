@@ -10,5 +10,3 @@ const operatorToSymbol: Record<Operator, string> = {
 export function formatOperator(operator: Operator): string {
   return operatorToSymbol[operator] ?? operator;
 }
-
-

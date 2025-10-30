@@ -15,5 +15,3 @@ describe('formatOperator', () => {
     expect(formatOperator('/')).toBe('÷');
   });
 });
-
-

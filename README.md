@@ -10,7 +10,7 @@ In the Countdown numbers game, you are given six integers and a target number. U
 
 A beautiful web interface is available in the `website/` directory, built with TypeScript and Vite.
 
-**🌐 Live Demo:** The website is automatically deployed to [my website](https://johnsy.com/countdown/).
+**🌐 Live Demo:** The website is automatically deployed to [my website](https://www.johnsy.com/countdown/).
 
 Features:
 - Green-on-black display for the target

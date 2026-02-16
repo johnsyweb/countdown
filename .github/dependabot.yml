@@ -7,6 +7,8 @@ updates:
       interval: 'weekly'
       day: 'monday'
     open-pull-requests-limit: 10
+    labels:
+      - 'dependencies'
     groups:
       development-dependencies:
         dependency-type: 'development'
@@ -21,6 +23,8 @@ updates:
     commit-message:
       prefix: 'chore(deps):'
       include: 'scope'
+    auto-merge: true
+    auto-merge-strategy: merge
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: 'github-actions'
@@ -28,6 +32,10 @@ updates:
     schedule:
       interval: 'weekly'
       day: 'monday'
+    labels:
+      - 'dependencies'
     commit-message:
       prefix: 'chore(ci):'
+    auto-merge: true
+    auto-merge-strategy: merge
 

@@ -23,8 +23,6 @@ updates:
     commit-message:
       prefix: 'chore(deps):'
       include: 'scope'
-    auto-merge: true
-    auto-merge-strategy: merge
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: 'github-actions'
@@ -36,6 +34,4 @@ updates:
       - 'dependencies'
     commit-message:
       prefix: 'chore(ci):'
-    auto-merge: true
-    auto-merge-strategy: merge
 

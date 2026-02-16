@@ -158,8 +158,7 @@ A single CI/CD workflow runs on push, pull request, and workflow_dispatch:
 
 - **Dependabot**: Keeps dependencies up to date
   - Weekly updates for npm packages and GitHub Actions (labels: `dependencies`)
-  - Groups minor and patch updates; PRs use merge commits
-  - Auto-merge enabled so PRs merge when CI passes. Require the CI/CD status checks on `main` via branch protection, e.g. using the `gh` CLI:
+  - Groups minor and patch updates; PRs use merge commits. The auto-merge workflow enables merge when CI passes. Require the CI/CD status checks on `main` via branch protection, e.g. using the `gh` CLI:
 
     ```bash
     ./scripts/set-branch-protection.sh

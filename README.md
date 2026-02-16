@@ -65,6 +65,16 @@ pnpm run build    # Build for production
 pnpm run preview  # Preview production build
 ```
 
+### Lighthouse
+
+Run [Lighthouse](https://developer.chrome.com/docs/lighthouse/) (performance, accessibility, best-practices, SEO) against the production preview. Build first, then run. Set `BASE_URL` to match your deploy path if needed.
+
+```bash
+pnpm run build && pnpm run lighthouse
+```
+
+The report is written to `lighthouse-report.json`. The script requires all category scores to be 100 or it exits with an error.
+
 ## Development
 
 ### Prerequisites

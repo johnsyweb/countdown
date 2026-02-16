@@ -3,6 +3,7 @@ dist/
 website/dist/
 website/public/og-image.png
 coverage/
+lighthouse-report.json
 *.log
 .DS_Store
 .env

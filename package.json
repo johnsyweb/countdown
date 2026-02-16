@@ -18,7 +18,8 @@
     "prebuild": "pnpm run generate:icons && pnpm run generate:og-image",
     "dev": "vite website --config vite.config.ts",
     "build": "vite build website --config vite.config.ts",
-    "preview": "vite preview website --config vite.config.ts"
+    "preview": "vite preview website --config vite.config.ts",
+    "lighthouse": "tsx scripts/run-lighthouse.ts"
   },
   "keywords": [
     "countdown",
@@ -28,6 +29,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "lighthouse": "^13.0.3",
     "@eslint/js": "^9.39.2",
     "@types/node": "^25.0.6",
     "@vitest/coverage-v8": "^3.2.4",

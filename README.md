@@ -148,18 +148,13 @@ pnpm run precommit     # Run all checks (format, lint, type-check, test)
 
 ## CI/CD
 
-This project uses GitHub Actions for continuous integration and deployment:
+A single CI/CD workflow runs on push, pull request, and workflow_dispatch:
 
-- **CI Workflow**: Runs on all pushes and pull requests
-  - Format checking with Prettier
-  - Linting with ESLint
-  - Type checking with TypeScript
-  - Test suite with Vitest
-
-- **Publish Workflow**: Deploys to GitHub Pages on main branch
-  - Runs all precommit checks
-  - Builds production website
-  - Automatically deploys to gh-pages
+1. **build** – Install deps, build website (with Playwright for OG image), cache `website/dist`.
+2. **lint-test** – Restore cache (or build if miss), format check, lint, type-check, tests.
+3. **lighthouse** – Restore cache (or build if miss), run Lighthouse (performance, accessibility, best-practices, SEO); must score 100 in all.
+4. **build-for-deploy** – On `main` only, after build + lint-test + lighthouse succeed: rebuild and upload Pages artifact.
+5. **deploy** – Deploy to GitHub Pages.
 
 - **Dependabot**: Keeps dependencies up to date
   - Weekly updates for npm packages and GitHub Actions

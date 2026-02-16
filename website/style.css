@@ -184,6 +184,9 @@ label {
 /* Seven Segment Display */
 .target-section {
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .seven-segment-display {

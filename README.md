@@ -13,6 +13,7 @@ A beautiful web interface is available in the `website/` directory, built with T
 **🌐 Live Demo:** The website is automatically deployed to [my website](https://www.johnsy.com/countdown/).
 
 Features:
+- Site header and footer with breadcrumb navigation (johnsy.com / Countdown)
 - Green-on-black display for the target
 - Six blue number cards for input
 - Keyboard navigation with Tab and Enter

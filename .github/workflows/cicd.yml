@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@v3
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -39,7 +39,7 @@ jobs:
         run: pnpm run build
 
       - name: Cache dist
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: website/dist
           key: build-${{ hashFiles('**/pnpm-lock.yaml', 'website/**', 'src/**', 'scripts/**', 'vite.config.ts') }}
@@ -49,10 +49,10 @@ jobs:
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@v3
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -61,7 +61,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Restore dist cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: dist-cache
         with:
           path: website/dist
@@ -90,10 +90,10 @@ jobs:
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@v3
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -102,7 +102,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Restore dist cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         id: dist-cache
         with:
           path: website/dist
@@ -130,10 +130,10 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@v3
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}

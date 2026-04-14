@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Setup mise
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -39,7 +39,7 @@ jobs:
         run: pnpm run build
 
       - name: Cache dist
-        uses: actions/cache/save@v5
+        uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae
         with:
           path: website/dist
           key: build-${{ hashFiles('**/pnpm-lock.yaml', 'website/**', 'src/**', 'scripts/**', 'vite.config.ts') }}
@@ -49,10 +49,10 @@ jobs:
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Setup mise
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -61,7 +61,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Restore dist cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae
         id: dist-cache
         with:
           path: website/dist
@@ -90,10 +90,10 @@ jobs:
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Setup mise
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -102,7 +102,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Restore dist cache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae
         id: dist-cache
         with:
           path: website/dist
@@ -130,10 +130,10 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Setup mise
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151
         with:
           cache: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -149,10 +149,10 @@ jobs:
           pnpm run build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v6
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b
         with:
           path: website/dist
 
@@ -166,4 +166,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128
